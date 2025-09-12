@@ -1,20 +1,34 @@
-[project]
+[tool.poetry]
 name = "ml-lessons"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "IlgizM"}
-]
+authors = ["IlgizM"]
 readme = "README.md"
-requires-python = ">=3.13"
-dependencies = [
-    "pandas (>=2.3.2,<3.0.0)",
-    "scikit-learn (>=1.7.2,<2.0.0)",
-    "matplotlib (>=3.10.6,<4.0.0)",
-    "seaborn (>=0.13.2,<0.14.0)"
-]
 
+# Указываем совместимость с Python здесь, а не в [project]
+[tool.poetry.dependencies]
+python = "^3.12.8"  # <- Важно! Указываем здесь
+pandas = "^2.3.2"
+scikit-learn = "^1.7.2"
+matplotlib = "^3.10.6"
+seaborn = "^0.13.2"
+
+
+# torch и другие зависимости тоже будут здесь
+torch = { version = "2.7.0", source = "pytorch-cu126" }
+torchvision = { version = "0.22.0", source = "pytorch-cu126" }
+torchaudio = { version = "2.7.0", source = "pytorch-cu126" }
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.30.1"
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core>=2.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+
+[[tool.poetry.source]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+priority = "explicit"
