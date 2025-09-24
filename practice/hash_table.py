@@ -67,7 +67,7 @@ class HashTable_LP:
         if self.arr[h] is None:
             self.h = (key, val)
         else:
-            fro 
+            pass
 
 
 
