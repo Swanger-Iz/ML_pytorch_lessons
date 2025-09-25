@@ -127,22 +127,80 @@ class LinkedList:
             
             itr = itr.next
         
+
+
+# Binary tree
+class BinarySearchTreeNode:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+        
+    def add_child(self, data):
+        if data == self.data: return
+        
+        if data < self.data:
+            # append to the left
+            if self.left: self.left.add_child(data)
+            else: self.left = BinarySearchTreeNode(data)
+        else:
+            # append to the right
+            if self.right: self.right.add_child(data)
+            else: self.right = BinarySearchTreeNode(data)
+            
+            
+    def in_order_traversal(self):
+        '''this method returns a list of elements in a specific order'''
+        elements = []
+        
+        # visit left tree
+        if self.left: elements += self.left.in_order_traversal()
+        
+        # visit base node
+        elements.append(self.data)
         
         
+        # visit right node
+        if self.right: elements += self.right.in_order_traversal()
+        
+        return elements
+    
+    def search(self, val):
+        '''search(self, val). Check if this value if in binary tree
+        
+        params:
+            val it is a value for search'''
+        
+        if self.data == val: return True
+        
+        if val < self.data:
+            # val might be in the left subtree
+            if self.left: return self.left.search(val)
+            else: return False
+        
+        if val > self.data:
+            # val might be in the right subtree
+            if self.right: return self.right.search(val)
+            else: return False
+
+def build_tree(elements):
+    root = BinarySearchTreeNode(elements[0])
+    for el in elements[1:]:
+        root.add_child(el)
+    
+    print('Binarytree has been created')
+    return root
         
 if __name__ == '__main__':
-    ll = LinkedList()
+    # ll = LinkedList()
+    
+    numbers = [17, 4, 1, 20, 9, 23, 19, 34, 18, 18, 4]
+    num_tree = build_tree(numbers)
+    num_tree.search(229)
     
     
-    ll.insert_values([229, 228, 1337, 1488, 123, 12444])
-    ll.insert_after_value(229, 'fuck')
-    ll.print()
-    print(ll.get_len())
     
-    ll.remove_by_value(1488)
-    
-    ll.print()
-    print(ll.get_len())
+    #num_tree.in_order_traversal()
     
     # print(f"calling: {ll.insert_val.__name__}")
     # ll.insert_val(2, 'ass')
