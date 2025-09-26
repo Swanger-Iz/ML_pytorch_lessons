@@ -1018,6 +1018,30 @@ files = [
 traitlets = "*"
 
 [[package]]
+name = "mlxtend"
+version = "0.23.4"
+description = "Machine Learning Library Extensions"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "mlxtend-0.23.4-py3-none-any.whl", hash = "sha256:8675456e2b71841116e5317f6d7aa568848ea2546865eb5eca7192e9b7f395f4"},
+    {file = "mlxtend-0.23.4.tar.gz", hash = "sha256:ba8c8427cbe65d462c8487511331cae0cdcf9252d92f8687f0a53d311128770f"},
+]
+
+[package.dependencies]
+joblib = ">=0.13.2"
+matplotlib = ">=3.0.0"
+numpy = ">=1.16.2"
+pandas = ">=0.24.2"
+scikit-learn = ">=1.3.1"
+scipy = ">=1.2.1"
+
+[package.extras]
+docs = ["mkdocs", "mkdocs-bootswatch", "nbconvert", "python-markdown-math"]
+testing = ["pytest"]
+
+[[package]]
 name = "mpmath"
 version = "1.3.0"
 description = "Python library for arbitrary-precision floating-point arithmetic"
@@ -2637,4 +2661,4 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12.8"
-content-hash = "31e15113f45cdaf7935138a2f2c43ec19e475b17296e3fc7783d17ce5b6907cd"
+content-hash = "b8b6fbc8203df75b090d6db7e000eb0103d65d8087938156bc745d4558962d46"
