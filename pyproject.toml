@@ -21,6 +21,7 @@ torchaudio = { version = "2.7.0", source = "pytorch-cu126" }
 tensorboard = "^2.20.0"
 pillow = "^11.3.0"
 pyprind = "^2.11.3"
+nltk = "^3.9.1"
 
 
 [tool.poetry.group.dev.dependencies]

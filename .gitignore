@@ -4,3 +4,4 @@ hymenoptera/
 first_pet_project/
 !first_pet_project/main_notebook.ipynb
 book_rashka/aclImdb
+book_rashka/movie_data.csv
