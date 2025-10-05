@@ -70,28 +70,41 @@ def find_all_occurances(nums, num_to_find):
     # check left side 
     i = index - 1
     while i >= 0:
-        if numbers[i] == num_to_find: indices.append(i)
+        if nums[i] == num_to_find: indices.append(i)
         else: break
         i -= 1
     
     i = index + 1
-    while i < len(numbers):
-        if numbers[i] == num_to_find: indices.append(i)
+    while i < len(nums):
+        if nums[i] == num_to_find: indices.append(i)
         else: break
         i += 1
     
     return sorted(indices)
             
 
-numbers = [1,4,6,9,11,15,15,15,17,21,34,34,56]
-numbers_list = [12, 15, 17, 19, 21, 24, 45, 67]  # len = 8
-val = 15
-idx = find_all_occurances(numbers, val)
+# numbers = [1,4,6,9,11,15,15,15,17,21,34,34,56]
+# numbers_list = [12, 15, 17, 19, 21, 24, 45, 67]  # len = 8
+# val = 15
+# idx = find_all_occurances(numbers, val)
 
-print(numbers)
-print(f'Looking for value: {val}, Index: {idx}')
+# print(numbers)
+# print(f'Looking for value: {val}, Index: {idx}')
 
-print('-' * 20)
+# print('-' * 20)
+
+print('Executed')
+
+
+
+
+
+
+
+
+
+
+
 
 
 
