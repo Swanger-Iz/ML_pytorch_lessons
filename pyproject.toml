@@ -23,6 +23,7 @@ pillow = "^11.3.0"
 pyprind = "^2.11.3"
 nltk = "^3.9.1"
 mlxtend = "^0.23.4"
+pytorch-lightning = "^2.5.5"
 
 
 [tool.poetry.group.dev.dependencies]
