@@ -8,3 +8,4 @@ book_rashka/movie_data.csv
 book_rashka/NNs/pets
 book_rashka/NNs/mnist_ds
 book_rashka/NNs/MNIST
+book_rashka/NNs/lightning_logs
