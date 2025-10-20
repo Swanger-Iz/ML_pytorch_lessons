@@ -24,6 +24,7 @@ pyprind = "^2.11.3"
 nltk = "^3.9.1"
 mlxtend = "^0.23.4"
 pytorch-lightning = "^2.5.5"
+gdown = "^5.2.0"
 
 
 [tool.poetry.group.dev.dependencies]
