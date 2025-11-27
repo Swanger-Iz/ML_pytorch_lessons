@@ -27,6 +27,7 @@ pytorch-lightning = "^2.5.5"
 gdown = "^5.2.0"
 beautifulsoup4 = "^4.14.2"
 transformers = "^4.57.1"
+datasets = "^4.4.1"
 
 
 [tool.poetry.group.dev.dependencies]
