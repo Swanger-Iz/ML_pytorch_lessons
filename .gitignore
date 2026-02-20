@@ -1,8 +1,12 @@
 .python-version
+
 data_CIFAR10/
 hymenoptera/
+
 first_pet_project/
 !first_pet_project/main_notebook.ipynb
+
+# book_rashka
 book_rashka/aclImdb
 book_rashka/movie_data.csv
 book_rashka/NNs/pets
@@ -13,5 +17,7 @@ book_rashka/NNs/cnn/celeba_m
 book_rashka/NNs/cnn/celeba
 book_rashka/NNs/rnn/datasets
 book_rashka/NNs/rnn/book.txt
+
+
 vision_transformers/data
 product_img_classifier
