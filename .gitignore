@@ -1,4 +1,5 @@
 .python-version
+__pycache__
 
 data_CIFAR10/
 hymenoptera/

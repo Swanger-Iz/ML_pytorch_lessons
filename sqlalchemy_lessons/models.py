@@ -35,4 +35,13 @@ class User(Base):
     age = Column(Integer)
 
 
+class Gachi(Base):
+    __tablename__ = "gachi_actors"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    hair_color = Column(String)
+    phrase = Column(String)
+
+
 Base.metadata.create_all(engine)  # go and create a db and tables which associated with it
