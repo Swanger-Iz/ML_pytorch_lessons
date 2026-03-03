@@ -1,0 +1,55 @@
+# docker run -d --rm --name psgr --network db_net 
+# -e POSTGRES_DB=mydata -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=1234 
+# -v postgres-data:/var/lib/postgresql/data postgres:17-alpine
+
+services:
+  # docker run -d --rm --name psgr --network db_net 
+  # -e POSTGRES_DB=mydata -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=1234 
+  # -v postgres-data:/var/lib/postgresql/data postgres:17-alpine
+  postgres:
+    image: postgres:17-alpine
+    container_name: psgr
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=mydata
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - db_net
+  # docker run --rm -d --network db_net --link psgr:db -p 8080:8080 adminer
+  adminer:
+    image: adminer:latest
+    container_name: adminer
+    networks:
+      - db_net
+    links:
+      - postgres:db    # service_name (not container name) : created by myself alias
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:    # parameter for sequencly starting, i.e adminer isn't working unless postgress will be launched
+      - postgres
+  
+  # docker run -d --rm --network db_net --link psgr:dbps -p 8000:4000 -v ${PWD}/app:/app flask-app:0.1
+  webflask:
+    build: ./app    # path to Dockerfile
+    image: flask-app:0.1    # if use build, then image uses as name
+    container_name: fl_site
+    links:
+      - "postgres:dbps"
+    networks:
+      - db_net
+    ports:
+      - "127.0.0.1:8000:4000"
+    volumes:
+      - ./app:/app
+    depends_on:
+      - postgres
+
+networks:
+  db_net:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  
