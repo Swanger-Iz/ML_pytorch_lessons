@@ -2,7 +2,8 @@ from contextlib import asynccontextmanager
 from typing import Annotated, get_type_hints
 
 from db import get_session, init_db
-from fastapi import Depends, FastAPI, HTTPException, Path, Query
+from fastapi import Depends, FastAPI, File, HTTPException, Path, Query, UploadFile
+from fastapi.responses import FileResponse, StreamingResponse
 from models import Album, Band, BandCreate, GenreChoises
 from sqlmodel import Session, select
 
@@ -68,6 +69,43 @@ async def create_band(band_data: BandCreate, session: Session = Depends(get_sess
     session.commit()
     session.refresh(band)
     return band
+
+
+### Upload files
+@app.post("/files")
+async def upload_file(uploaded_file: UploadFile):
+    file = uploaded_file.file
+    filename = uploaded_file.filename
+    with open(f"1_{filename}", "wb") as f:
+        f.write(file.read())
+
+
+@app.post("/m_files")
+async def upload_files(uploaded_files: list[UploadFile]):
+    for uploaded_file in uploaded_files:
+        file = uploaded_file.file
+        filename = uploaded_file.filename
+        with open(f"m_{filename}", "wb") as f:
+            f.write(file.read())
+
+
+## Download files or get file
+@app.get("/files/{filename}")
+async def get_file_from_pc(filename: str):
+    # Если файл лежит на жестком диске у нас
+    return FileResponse(filename)
+
+
+def iter_file(filename: str):
+    with open(filename, "rb") as f:
+        while chunk := f.read(1024 * 1024):  # chunk := f.read(1024 * 1024) тут считываем кусок файла и сразу кладем в переменную chunk
+            yield chunk
+
+
+@app.get("/files/streaming/{filename}")
+async def get_streaming_file(filename: str):
+    # Если файл лежит на жестком диске у нас
+    return StreamingResponse(iter_file(filename), media_type="video/mp4")
 
 
 # @app.get("/bands/genre/{genre}", status_code=206, response_model=list[Band])
